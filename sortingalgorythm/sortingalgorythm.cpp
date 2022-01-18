@@ -3,7 +3,7 @@ using namespace std;
 
 int* generateNumbers(int countOfNumbers) {
     int *arraypointer;
-    int numbers[] =  {};
+    int numbers[countOfNumbers] =  {};
     for(int i = 0; i < countOfNumbers; i++) {
         numbers[i] = rand() % 100000 + 1;
     }
