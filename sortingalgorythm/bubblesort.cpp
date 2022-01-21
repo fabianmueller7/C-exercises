@@ -20,6 +20,12 @@ int *generateNumbers()
 
 void outputArray(int *arraypointer)
 {
+    if (!arraypointer)
+    {
+        cout << "array ist emtpy! " << endl;
+        return;
+    }
+
     while (*arraypointer != '\0')
     {
         cout << *arraypointer << endl;
@@ -27,35 +33,44 @@ void outputArray(int *arraypointer)
     }
 }
 
-void deleteArray(int *arraypointer)
+void swap(int *firstswapelement, int *secondswapelement)
 {
+    int temp = *firstswapelement;
+    *firstswapelement = *secondswapelement;
+    *secondswapelement = temp;
+}
+
+int countOfElements(int *arraypointer)
+{
+    int count = 0;
     while (*arraypointer != '\0')
     {
-        cout << *arraypointer << endl;
+        count++;
         arraypointer++;
     }
+    return count;
 }
 
 void bubblesort(int *arraypointer)
 {
-    bool finishedsorting = false;
-    int *startarraypointer = arraypointer;
-
-    while (finishedsorting == false)
+    if (!arraypointer)
     {
-        finishedsorting = true;
-        while (*arraypointer != '\0')
+        cout << "array ist emtpy! " << endl;
+        return;
+    }
+
+    int n = countOfElements(arraypointer);
+    cout << "number of elements " << n << endl;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
         {
-            if (*arraypointer > *(arraypointer + 1))
+            if (*(arraypointer + j) > *(arraypointer + j + 1))
             {
-                int temp = *(arraypointer + 1);
-                *(arraypointer + 1) = *arraypointer;
-                *arraypointer = temp;
-                finishedsorting = false;
+                swap((arraypointer + j), (arraypointer + j + 1));
             }
-            arraypointer++;
         }
-        arraypointer = startarraypointer;
     }
 }
 
